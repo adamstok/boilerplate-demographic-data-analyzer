@@ -6,7 +6,13 @@ def calculate_demographic_data(print_data=True):
     df = pd.read('adult.data.csv')
 
     # How many of each race are represented in this dataset? This should be a Pandas series with race names as the index labels.
-    race_count = None
+    whites = len(df[df['race'] == 'White'])
+    blacks = len(df[df['race'] == 'Black'])
+    apis = len(df[df['race'] == 'Asian-Pac-Islander'])
+    aies = len(df[df['race'] == 'Amer-Indian-Eskimo'])
+    others = len(df[df['race'] == 'Other'])
+    race_count = pd.Series(data=[whites, blacks, apis, aies, others])
+    race_count.index = df['race'].unique()
 
     # What is the average age of men?
     average_age_men = None
