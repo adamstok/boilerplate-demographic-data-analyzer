@@ -35,7 +35,13 @@ def calculate_demographic_data(print_data=True):
         df[df['education'] == 'Masters']) + len(df[df['education'] == 'Doctorate'])
 
     higher_education = len_higher_degrees / (bachelors + masters + doctorates)
-    lower_education = None
+
+    len_lower_degrees_50K = len(df[~(df['education'] == 'Bachelors') & ~(
+        df['education'] == 'Masters') & ~(df['education'] == 'Doctorate') & (df['salary'] == '>50K')])
+
+    len_lower_degrees = len(df[~(df['education'] == 'Bachelors') & ~(
+        df['education'] == 'Masters') & ~(df['education'] == 'Doctorate')])
+    lower_education = len_lower_degrees / len_lower_degrees_50K
 
     # percentage with salary >50K
     higher_education_rich = None
