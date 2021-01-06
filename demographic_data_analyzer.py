@@ -35,8 +35,8 @@ def calculate_demographic_data(print_data=True):
     len_higher_degrees = len(df[df['education'] == 'Bachelors']) + len(
         df[df['education'] == 'Masters']) + len(df[df['education'] == 'Doctorate'])
 
-    higher_education_rich = (
-        (bachelors + masters + doctorates) / len_higher_degrees) * 100
+    higher_education_rich = round((
+        (bachelors + masters + doctorates) / len_higher_degrees) * 100, 1)
 
     len_lower_degrees_50K = len(df[~(df['education'] == 'Bachelors') & ~(
         df['education'] == 'Masters') & ~(df['education'] == 'Doctorate') & (df['salary'] == '>50K')])
@@ -78,7 +78,7 @@ def calculate_demographic_data(print_data=True):
             salary_dict[c] = 0
 
     highest_earning_country = maxed_country
-    highest_earning_country_percentage = maxed_value
+    highest_earning_country_percentage = round(maxed_value, 1)
 
     # Identify the most popular occupation for those who earn >50K in India.
     india = list(df[(df['native-country'] == 'India') &
